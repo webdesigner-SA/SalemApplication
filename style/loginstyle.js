@@ -58,6 +58,18 @@ export const styles = StyleSheet.create({
       paddingHorizontal: 25,
     },
 
+    passwordWrapper: {
+      position: "relative",
+      width: "100%",
+    },
+
+    eyeIcon: {
+      position: "absolute",
+      left: 20,
+      top: 18,
+      padding: 6,
+    },
+
       // نص نسيت كلمة المرور
       forget: {
         marginLeft: 200, 

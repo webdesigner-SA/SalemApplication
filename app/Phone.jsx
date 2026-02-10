@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { styles } from "../style/loginstyle";
 import ThemedTextInput from "../components/ThemedTextInput";
 import { useState, useRef } from "react";
@@ -59,7 +59,12 @@ export default function Phone() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+
+      <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
 
       {/* reCAPTCHA (يظهر فقط داخل Expo Go) */}
       <FirebaseRecaptchaVerifierModal
@@ -139,7 +144,10 @@ export default function Phone() {
 
         </View>
       </View>
-    </View>
+
+      </ScrollView>
+    </KeyboardAvoidingView>
+  
   );
 }
 

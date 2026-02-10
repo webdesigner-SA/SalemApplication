@@ -1,10 +1,9 @@
-import { Text, View, TouchableOpacity, Switch } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, View, Text, TouchableOpacity, Switch } from "react-native";
 import { styles } from "../style/loginstyle";
 import ThemedTextInput from "../components/ThemedTextInput";
 import { useState } from "react";
 import { Link, router } from "expo-router";
 import { validateRegister } from "../style/Validation";
-
 import { auth, db } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -49,9 +48,13 @@ export default function Register() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <View style={styles.container}>
-        <Text style={styles.inputlog}>سجل الآن !!</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+        <View style={styles.container}>
+          <Text style={styles.inputlog}>سجل الآن !!</Text>
 
         <View style={styles.containerCard}>
           <View style={styles.box}>
@@ -112,14 +115,15 @@ export default function Register() {
             <Text style={styles.buttonText}>إنشاء حساب</Text>
           </TouchableOpacity>
 
-          <Text style={{ textAlign: "center", fontSize: 16, color: "#00000080" }}>
-            لديك حساب؟{" "}
-            <Link href="/Login" style={styles.forget}>
-              تسجيل الدخول
-            </Link>
-          </Text>
+            <Text style={{ textAlign: "center", fontSize: 16, color: "#00000080" }}>
+              لديك حساب؟{" "}
+              <Link href="/Login" style={styles.forget}>
+                تسجيل الدخول
+              </Link>
+            </Text>
+          </View>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }

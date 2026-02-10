@@ -1,4 +1,5 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { styles } from "../style/loginstyle";
 import ThemedTextInput from "../components/ThemedTextInput";
 import { Link } from "expo-router";
@@ -14,6 +15,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleLogin = async () => {
     const validationErrors = validateLogin(username, password);
@@ -38,7 +40,12 @@ export default function Login() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+        <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+
       <View style={styles.container}>
 
         <Text style={styles.inputlog}>تسجيل الدخول</Text>
@@ -55,12 +62,25 @@ export default function Login() {
           </View>
 
           <View style={styles.box}>
-            <ThemedTextInput
-              placeholder="كلمة السر"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={true}
-            />
+            <View style={styles.passwordWrapper}>
+              <ThemedTextInput
+                placeholder="كلمة السر"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!passwordVisible}
+                style={{ paddingLeft: 48 }}
+              />
+              <TouchableOpacity
+                style={styles.eyeIcon}
+                onPress={() => setPasswordVisible((prev) => !prev)}
+              >
+                <Ionicons
+                  name={passwordVisible ? "eye-off" : "eye"}
+                  size={22}
+                  color="#4B217F"
+                />
+              </TouchableOpacity>
+            </View>
             {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
           </View>
 
@@ -81,6 +101,9 @@ export default function Login() {
 
         </View>
       </View>
-    </View>
+
+      </ScrollView>
+    </KeyboardAvoidingView>
+
   );
 }
