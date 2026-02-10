@@ -16,22 +16,18 @@ export default function Phone() {
   const [code, setCode] = useState("");
   const [otpErrors, setOtpErrors] = useState({});
   const [verificationId, setVerificationId] = useState(null);
-
   const recaptchaVerifier = useRef(null);
   const router = useRouter();
 
   // إرسال SMS
   const handleRegister = async () => {
     try {
-      
       const phoneNumber = "+966" + phone.slice(1);
-
       const verification = await signInWithPhoneNumber(
         auth,
         phoneNumber,
         recaptchaVerifier.current
       );
-
       setVerificationId(verification.verificationId);
       setShowPopup(true);
     } catch (error) {
@@ -39,7 +35,6 @@ export default function Phone() {
       alert("تعذر إرسال الرمز. تأكد من صحة الرقم.");
     }
   };
-
   // التحقق من الرمز
   const handleOTPConfirm = async () => {
     const validationErrors = validateOTP(code);

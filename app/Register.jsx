@@ -10,7 +10,6 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function Register() {
   const [remember, setRemember] = useState(false);
-
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [username, setUsername] = useState("");
@@ -30,9 +29,7 @@ export default function Register() {
           email,
           password
         );
-
         const user = userCredential.user;
-
         await setDoc(doc(db, "users", user.uid), {
           name,
           phone,

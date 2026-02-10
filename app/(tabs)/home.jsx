@@ -94,6 +94,24 @@ export default function Home() {
         </TouchableOpacity>
       </View>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
       {/* BottomSheet component */}
       {showSheet && ( // Only show BottomSheet if showSheet is true
         <BottomSheet

@@ -11,7 +11,6 @@ import { router } from "expo-router";
 
 
 export default function Login() {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -25,13 +24,9 @@ export default function Login() {
       try {
         // البيانات تنحفظ في الداتا بيس كايميل ورمز سري لذلك نستخدم اسم المستخدم مع @example.com لتوليد إيميل وهمي
         const email = `${username}@example.com`;
-
       await signInWithEmailAndPassword(auth, email, password);
-
-
         // نجاح تسجيل الدخول → الانتقال مباشرة
-  router.replace("/(tabs)/home");
-
+      router.replace("/(tabs)/home");
       } catch (error) {
         // فقط الخطأ يظهر
         alert("خطأ: " + error.message);
@@ -45,13 +40,9 @@ export default function Login() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-
       <View style={styles.container}>
-
         <Text style={styles.inputlog}>تسجيل الدخول</Text>
-
         <View style={styles.containerCardLogin}>
-
           <View style={styles.box}>
             <ThemedTextInput
               placeholder="اسم المستخدم"
