@@ -35,7 +35,7 @@ export default function Login() {
   };
 
   return (
-        <KeyboardAvoidingView
+    <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >

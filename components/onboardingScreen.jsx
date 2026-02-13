@@ -26,13 +26,14 @@ const onboardingData = [
 // Onboarding component
 export default function Onboarding() {
 
-  // State to track which onboarding screen is shown
+  // State to track which onboarding screen is currently shown (Start at screen 0 -- the first one)
   const [index, setIndex] = useState(0);
-  // Get router object for navigation
+  // Get router object for navigation to other screens
   const router = useRouter();
 
   // Go to next onboarding screen or Login if it's the last screen
   const handleNext = () => {
+    // If it's not on the last screen go to the next one
     if (index < onboardingData.length - 1) {
       setIndex(index + 1);
     } else {
@@ -41,7 +42,7 @@ export default function Onboarding() {
     }
   };
 
-  // Skip all and go to Login
+  // Skip all and go to Login (replace() removes onboarding from navigation history so the user can’t go back to it.)
   const handleSkip = () => {
     router.replace('/Login');
   };

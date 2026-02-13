@@ -13,7 +13,7 @@ export default function Home() {
   // State to track if tab bar should be hidden (true to hide, false to show)
   const [hideTabBar, setHideTabBar] = useState(false);
 
-  // State to track which icon to show (expand or back arrow)
+  // State to track which icon to show (false to expand icon or true to back arrow icon)
   const [showBackIcon, setShowBackIcon] = useState(false);
 
   // State to control bottom sheet visibility (true to show, false to hide)
@@ -23,8 +23,8 @@ export default function Home() {
   const initialRegion = {
     latitude: 21.4858,
     longitude: 39.1925,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
+    latitudeDelta: 0.1, // control zoom level
+    longitudeDelta: 0.1, // control zoom level
   };
 
   // Ref to control the BottomSheet programmatically
@@ -33,7 +33,7 @@ export default function Home() {
   // Snap points for the BottomSheet (I set only collapsed state at 12% heiht)
   const snapPoints = useMemo(() => ['12%'], []);
 
-  // Get navigation object to control tab bar visibility
+  // Used to hide/show the tab bar.
   const navigation = useNavigation();
 
   // Callback to update isCollapsed when the BottomSheet changes position
@@ -94,23 +94,6 @@ export default function Home() {
         </TouchableOpacity>
       </View>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
 
       {/* BottomSheet component */}
       {showSheet && ( // Only show BottomSheet if showSheet is true
